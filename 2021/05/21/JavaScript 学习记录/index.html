@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="yanm1ng&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      JavaScript 学习记录 | LP 学长
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>LP 学长</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/series/" class="item-link">Series</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/series/" class="menu-link">Series</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>JavaScript 学习记录</h2>
+  <p class="post-date">2021-05-21</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="推荐文章"><a href="#推荐文章" class="headerlink" title="推荐文章"></a>推荐文章</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1022910821149312/1023024413276544">Promise - 廖雪峰</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f5cd424c3333">JS 异步之 async/await，彻底告别回调地狱</a></li>
+<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000012861862">Vue.nextTick 的原理和用途</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/JineD/article/details/105975100">Vue 组件传值 – Vue 之父子组件间通信实例讲解（props、$ref、$emit）</a></li>
+<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000012948175">Vue 的 computed 和 watch 的细节全面分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/lan128lan/article/details/103628619">JS 中 self = this 的解释</a></li>
+</ul>
+<h2 id="arguments-的-callee-属性"><a href="#arguments-的-callee-属性" class="headerlink" title="arguments 的 callee 属性"></a>arguments 的 callee 属性</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (num &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// arguments 的 callee 属性是一个指针，指向拥有此 arguments 对象的函数</span></span><br><span class="line">        <span class="comment">// 这样，无论引用函数是使用的是什么名字，都可以保证正常完成递归调用</span></span><br><span class="line">        <span class="keyword">return</span> num * <span class="built_in">arguments</span>.callee(num - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">alert(factorial(<span class="number">4</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这样编写就会出错</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (num &lt;= <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> num * factorial(num-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> anotherFactorial = factorial2;</span><br><span class="line">factorial2 = <span class="literal">null</span>;</span><br><span class="line">alert(anotherFactorial(<span class="number">4</span>)); <span class="comment">//出错！</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="caller-属性"><a href="#caller-属性" class="headerlink" title="caller 属性"></a>caller 属性</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callerTest</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">outer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        inner();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">inner</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="built_in">arguments</span>.callee.caller);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    outer();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">callerTest();</span><br></pre></td></tr></table></figure>
+
+<h2 id="call-和-bind"><a href="#call-和-bind" class="headerlink" title="call() 和 bind()"></a>call() 和 bind()</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * bind 函数使用练习</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callAndBindTest</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">window</span>.color = <span class="string">&quot;red&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> o = &#123;<span class="attr">color</span>: <span class="string">&quot;blue&quot;</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">sayColor</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="built_in">this</span>.color);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sayColor(o); <span class="comment">//red</span></span><br><span class="line">    sayColor.call(o); <span class="comment">//blue</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> objectSayColor = sayColor.bind(o);</span><br><span class="line">    objectSayColor(); <span class="comment">//blue</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// callAndBindTest();</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="通过触发监听事件获取-DOM-元素的结构（target）和下标（index）"><a href="#通过触发监听事件获取-DOM-元素的结构（target）和下标（index）" class="headerlink" title="通过触发监听事件获取 DOM 元素的结构（target）和下标（index）"></a>通过触发监听事件获取 DOM 元素的结构（target）和下标（index）</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fontColors = <span class="built_in">document</span>.getElementById(<span class="string">&quot;right_nav&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> list = fontColors.querySelectorAll(<span class="string">&quot;span&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; list.length; j++) &#123;</span><br><span class="line">    list[j].index = j;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fontColors.addEventListener(<span class="string">&#x27;mouseover&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="comment">/* event.target 指被执行事件的 DOM 对象</span></span><br><span class="line"><span class="comment">     * event.currentTarget 的区别是：若无监听事件，则向上追溯 DOM 对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">var</span> no_ = event.target.index;</span><br><span class="line">    <span class="keyword">var</span> obj = <span class="built_in">document</span>.getElementById(<span class="string">&quot;right_nav&quot;</span>).getElementsByTagName(<span class="string">&quot;span&quot;</span>)[no_];</span><br><span class="line">    obj.style.color = <span class="string">&quot;lightskyblue&quot;</span>;</span><br><span class="line">    obj.style.fontWeight = <span class="string">&quot;bolder&quot;</span>;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">fontColors.addEventListener(<span class="string">&#x27;mouseout&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> no_ = event.target.index;</span><br><span class="line">    <span class="keyword">var</span> obj = <span class="built_in">document</span>.getElementById(<span class="string">&quot;right_nav&quot;</span>).getElementsByTagName(<span class="string">&quot;span&quot;</span>)[no_];</span><br><span class="line">    obj.style.color = <span class="string">&quot;black&quot;</span>;</span><br><span class="line">    obj.style.fontWeight = <span class="string">&quot;unset&quot;</span>;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="间歇调用与超时调用"><a href="#间歇调用与超时调用" class="headerlink" title="间歇调用与超时调用"></a>间歇调用与超时调用</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 间歇调用（后者）与超时调用</span></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">&quot;Hello world!&quot;</span>);</span><br><span class="line">&#125;, <span class="number">10000</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setInterval</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">&quot;Hello world!&quot;</span>);</span><br><span class="line">&#125;, <span class="number">4000</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="动态加载"><a href="#动态加载" class="headerlink" title="动态加载"></a>动态加载</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadScript</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">&quot;script&quot;</span>);</span><br><span class="line">    script.type = <span class="string">&quot;text/javascript&quot;</span>;</span><br><span class="line">    script.src = url;</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(script);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadStyles</span>(<span class="params">url</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> link = <span class="built_in">document</span>.createElement(<span class="string">&quot;link&quot;</span>);</span><br><span class="line">    link.rel = <span class="string">&quot;stylesheet&quot;</span>;</span><br><span class="line">    link.type = <span class="string">&quot;text/css&quot;</span>;</span><br><span class="line">    link.href = url;</span><br><span class="line">    <span class="keyword">var</span> head = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&quot;head&quot;</span>)[<span class="number">0</span>];</span><br><span class="line">    head.appendChild(link);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="insertAdjacentHTML-方法"><a href="#insertAdjacentHTML-方法" class="headerlink" title="insertAdjacentHTML() 方法"></a>insertAdjacentHTML() 方法</h2><p>接收两个参数：插入位置和要插入的 HTML 文本。第一个参数必须是下列值之一：</p>
+<ul>
+<li>“beforebegin” ，在当前元素之前插入一个紧邻的同辈元素；</li>
+<li>“afterbegin” ，在当前元素之下插入一个新的子元素或在第一个子元素之前再插入新的子元素；</li>
+<li>“beforeend” ，在当前元素之下插入一个新的子元素或在最后一个子元素之后再插入新的子元素；</li>
+<li>“afterend” ，在当前元素之后插入一个紧邻的同辈元素。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//作为前一个同辈元素插入</span></span><br><span class="line">element.insertAdjacentHTML(<span class="string">&quot;beforebegin&quot;</span>, <span class="string">&quot;&lt;p&gt;Hello world!&lt;/p&gt;&quot;</span>);</span><br><span class="line"><span class="comment">//作为第一个子元素插入</span></span><br><span class="line">element.insertAdjacentHTML(<span class="string">&quot;afterbegin&quot;</span>, <span class="string">&quot;&lt;p&gt;Hello world!&lt;/p&gt;&quot;</span>);</span><br><span class="line"><span class="comment">//作为最后一个子元素插入</span></span><br><span class="line">element.insertAdjacentHTML(<span class="string">&quot;beforeend&quot;</span>, <span class="string">&quot;&lt;p&gt;Hello world!&lt;/p&gt;&quot;</span>);</span><br><span class="line"><span class="comment">//作为后一个同辈元素插入</span></span><br><span class="line">element.insertAdjacentHTML(<span class="string">&quot;afterend&quot;</span>, <span class="string">&quot;&lt;p&gt;Hello world!&lt;/p&gt;&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="jQuery-为未来元素绑定点击事件"><a href="#jQuery-为未来元素绑定点击事件" class="headerlink" title="jQuery 为未来元素绑定点击事件"></a>jQuery 为未来元素绑定点击事件</h2><p>html 中用js动态添加的元素，用jquery的普通点击事件写法是不行的，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;.mremove&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   alert(<span class="built_in">this</span>.innerHTML);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这样写是不行的。</p>
+<p>可以这样写</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).on(<span class="string">&quot;click&quot;</span>, <span class="string">&quot;.mremove&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="built_in">this</span>.innerHTML);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="event-target-和-event-currentTarget-的区别"><a href="#event-target-和-event-currentTarget-的区别" class="headerlink" title="event.target 和 event.currentTarget 的区别"></a>event.target 和 event.currentTarget 的区别</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">&quot;myBtn&quot;</span>);</span><br><span class="line">btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    alert(event.currentTarget === <span class="built_in">this</span>); <span class="comment">//true</span></span><br><span class="line">    alert(event.target === <span class="built_in">this</span>); <span class="comment">//true</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.body.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    alert(event.currentTarget === <span class="built_in">document</span>.body); <span class="comment">//true</span></span><br><span class="line">    alert(<span class="built_in">this</span> === <span class="built_in">document</span>.body); <span class="comment">//true</span></span><br><span class="line">    alert(event.target === <span class="built_in">document</span>.getElementById(<span class="string">&quot;myBtn&quot;</span>)); <span class="comment">//true</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">当单击这个例子中的按钮时， this 和 currentTarget 都等于 document.body ，因为事件处理程序是注册到这个元素上的。然而， target 元素却等于按钮元素，因为它是 click 事件真正的目标。由于按钮上并没有注册事件处理程序，结果 click 事件就冒泡到了 document.body ，在那里事件才得到了处理。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h2><blockquote>
+<p>事件冒泡：即事件开始时由最具体的元素（文档中嵌套层次最深的那个节点）接收，然后逐级向上传播到较为不具体的节点（文档）</p>
+<p>事件捕获：不太具体的节点应该更早接收到事件，而最具体的节点应该最后接收到事件</p>
+</blockquote>
+<h2 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h2><p>参考教程：<a target="_blank" rel="noopener" href="https://ts.xcatliu.com/">https://ts.xcatliu.com</a></p>
+<h2 id="lt-noscript-gt-用法"><a href="#lt-noscript-gt-用法" class="headerlink" title="&lt;noscript&gt; 用法"></a>&lt;noscript&gt; 用法</h2><p>noscript 元素用来定义在脚本未被执行时的替代内容（文本）。</p>
+<p>此标签可被用于可识别 <script> 标签但无法支持其中的脚本的浏览器。</p>
+<p>例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.write(<span class="string">&quot;Hello World!&quot;</span>)</span></span><br><span class="line"><span class="javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">noscript</span>&gt;</span>Your browser does not support JavaScript!<span class="tag">&lt;/<span class="name">noscript</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="回调函数-callback"><a href="#回调函数-callback" class="headerlink" title="回调函数 callback()"></a>回调函数 callback()</h2><p>回调函数并不复杂，明白两个重点即可：</p>
+<ol>
+<li><strong>函数可以作为一个参数在另一个函数中被调用</strong></li>
+<li><strong>大多数语言都是同步编程语言，而JS是异步编程语言。</strong>同步：一定要等任务执行完了，得到结果，才执行下一个任务。 异步：不等任务执行完，直接执行下一个任务。</li>
+</ol>
+<p>下面以一个简单的 JS 文件为例，举一个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(n);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">writeFile</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    fs.writeFile(<span class="string">&#x27;input.txt&#x27;</span>, <span class="string">&#x27;内容&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!err) &#123;</span><br><span class="line">            data = <span class="number">1</span>;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&quot;文件写入完毕!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">writeFile();</span><br><span class="line">func(data);</span><br></pre></td></tr></table></figure>
+
+<p>以上代码不难理解，按照正常逻辑，结果应该是打印 1，但结果是 0，明明我们在 writeFile 函数里我们重新对 data 进行了赋值，为什么结果还是 0 呢？</p>
+<p>因为程序运行到 writeFile() 这一行的时候，是一个比较耗时的 I/O 操作，系统并不会卡在此处，死等 writeFile 执行完毕再执行下一条语句，而是直接下一条代码，即 f(data)，而此时 data 并没有被重新赋值为 1，所以打印出来的结果还是 0 。</p>
+<p>我们使用 callback 改写一下 writeFile 函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(n);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">writeFile</span>(<span class="params">callback</span>) </span>&#123; <span class="comment">// 关键字callback，在这里就是指 func()</span></span><br><span class="line">    fs.writeFile(<span class="string">&#x27;input.txt&#x27;</span>, <span class="string">&#x27;内容&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!err) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&quot;文件写入完毕!&quot;</span>);</span><br><span class="line">            data = <span class="number">1</span>;</span><br><span class="line">            callback(data); <span class="comment">// 此行相当于func(data)</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">writeFile(func); <span class="comment">// 函数 func 作为一个参数传进 writeFile 函数</span></span><br></pre></td></tr></table></figure>
+
+<p>我们在 writeFile 函数的形参里加入了一个关键字 callback，表示这是一个回调函数，即所谓的“<strong>以函数为参数</strong>”，然后当文件写入完毕后，执行 data = 1, 再用一次 callback 关键字，在这里，关键字“callback”就是 func() 函数的化身，表示我们在此处调用一次 func() 函数.</p>
+<p>总结：</p>
+<p><strong>【在大多数编程语言中，函数的形参总是由外往内向函数体传递参数，但在JS里如果形参是关键字”callback”则完全相反，它表示函数体在完成某种操作后由内向外调用某个外部函数】</strong></p>
+<p>所谓的“回调”，就是回头调用的意思。本例子中即是：先写文件，写操作结束后，再回头调用 func() 函数。</p>
+<p>有时候，我们会看到一些回调函数并没有使用 callback 关键字，这种连 callback 关键字和函数名都省略了，直接在函数的形参中嵌入一个 function 的写法，在 js 代码中更为常见，其本质上仍然是回调函数。</p>
+<h2 id="sessionStorage-与-localStorage-的区别"><a href="#sessionStorage-与-localStorage-的区别" class="headerlink" title="sessionStorage 与 localStorage 的区别"></a>sessionStorage 与 localStorage 的区别</h2><p><code>sessionStorage</code> 属性允许你访问一个，对应当前源的 session <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Storage"><code>Storage</code></a> 对象。它与 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage"><code>localStorage</code></a> 相似，不同之处在于 <code>localStorage</code> 里面存储的数据没有过期时间设置，而存储在 <code>sessionStorage</code> 里面的数据在页面会话结束时会被清除。</p>
+<p>应该注意，存储在sessionStorage或localStorage中的数据<strong>特定于页面的协议</strong>。也就是说<code>http://example.com</code> 与 <code>https://example.com</code> 的 sessionStorage 相互隔离。</p>
+<p>==sessionStorage 语法==</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 保存数据到 sessionStorage</span></span><br><span class="line">sessionStorage.setItem(<span class="string">&#x27;key&#x27;</span>, <span class="string">&#x27;value&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从 sessionStorage 获取数据</span></span><br><span class="line"><span class="keyword">let</span> data = sessionStorage.getItem(<span class="string">&#x27;key&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从 sessionStorage 删除保存的数据</span></span><br><span class="line">sessionStorage.removeItem(<span class="string">&#x27;key&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从 sessionStorage 删除所有保存的数据</span></span><br><span class="line">sessionStorage.clear();</span><br></pre></td></tr></table></figure>
+
+<p>==localStorage 语法==</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 保存数据到 localStorage</span></span><br><span class="line"><span class="built_in">localStorage</span>.setItem(<span class="string">&#x27;myCat&#x27;</span>, <span class="string">&#x27;Tom&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 该语法用于读取 localStorage 项</span></span><br><span class="line"><span class="keyword">let</span> cat = <span class="built_in">localStorage</span>.getItem(<span class="string">&#x27;myCat&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 该语法用于移除 localStorage 项</span></span><br><span class="line"><span class="built_in">localStorage</span>.removeItem(<span class="string">&#x27;myCat&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 移除所有</span></span><br><span class="line"><span class="built_in">localStorage</span>.clear();</span><br></pre></td></tr></table></figure>
+
+</section>
+    <!-- Tags START -->
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2021/05/21/hello-world/">
+        <span class="nav-arrow">← </span>
+        
+          Hello World
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo=""
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%8E%A8%E8%8D%90%E6%96%87%E7%AB%A0"><span class="toc-nav-text">推荐文章</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#arguments-%E7%9A%84-callee-%E5%B1%9E%E6%80%A7"><span class="toc-nav-text">arguments 的 callee 属性</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#caller-%E5%B1%9E%E6%80%A7"><span class="toc-nav-text">caller 属性</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#call-%E5%92%8C-bind"><span class="toc-nav-text">call() 和 bind()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E9%80%9A%E8%BF%87%E8%A7%A6%E5%8F%91%E7%9B%91%E5%90%AC%E4%BA%8B%E4%BB%B6%E8%8E%B7%E5%8F%96-DOM-%E5%85%83%E7%B4%A0%E7%9A%84%E7%BB%93%E6%9E%84%EF%BC%88target%EF%BC%89%E5%92%8C%E4%B8%8B%E6%A0%87%EF%BC%88index%EF%BC%89"><span class="toc-nav-text">通过触发监听事件获取 DOM 元素的结构（target）和下标（index）</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E9%97%B4%E6%AD%87%E8%B0%83%E7%94%A8%E4%B8%8E%E8%B6%85%E6%97%B6%E8%B0%83%E7%94%A8"><span class="toc-nav-text">间歇调用与超时调用</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD"><span class="toc-nav-text">动态加载</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#insertAdjacentHTML-%E6%96%B9%E6%B3%95"><span class="toc-nav-text">insertAdjacentHTML() 方法</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#jQuery-%E4%B8%BA%E6%9C%AA%E6%9D%A5%E5%85%83%E7%B4%A0%E7%BB%91%E5%AE%9A%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6"><span class="toc-nav-text">jQuery 为未来元素绑定点击事件</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#event-target-%E5%92%8C-event-currentTarget-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-nav-text">event.target 和 event.currentTarget 的区别</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E4%BA%8B%E4%BB%B6%E6%B5%81"><span class="toc-nav-text">事件流</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#TypeScript"><span class="toc-nav-text">TypeScript</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#lt-noscript-gt-%E7%94%A8%E6%B3%95"><span class="toc-nav-text">&lt;noscript&gt; 用法</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'https://liupipipi.github.io/2021/05/21/JavaScript 学习记录/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2021 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+  </body>
+</html>
