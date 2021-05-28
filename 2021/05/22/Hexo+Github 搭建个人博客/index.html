@@ -159,10 +159,10 @@
 <p>本文所使用的环境：</p>
 <ul>
 <li>Windows 10@Windows_NT 10.0.19041 win32 x64</li>
-<li><a href="mailto:&#110;&#x6f;&#100;&#101;&#x2e;&#x6a;&#x73;&#64;&#x31;&#50;&#46;&#49;&#51;&#x2e;&#x30;">&#110;&#x6f;&#100;&#101;&#x2e;&#x6a;&#x73;&#64;&#x31;&#50;&#46;&#49;&#51;&#x2e;&#x30;</a></li>
-<li><a href="mailto:&#x67;&#105;&#116;&#64;&#x32;&#x2e;&#50;&#51;&#x2e;&#x30;&#46;&#x77;&#x69;&#110;&#100;&#111;&#119;&#115;&#46;&#x31;">&#x67;&#105;&#116;&#64;&#x32;&#x2e;&#50;&#51;&#x2e;&#x30;&#46;&#x77;&#x69;&#110;&#100;&#111;&#119;&#115;&#46;&#x31;</a></li>
-<li><a href="mailto:&#104;&#x65;&#120;&#x6f;&#64;&#53;&#x2e;&#52;&#x2e;&#48;">&#104;&#x65;&#120;&#x6f;&#64;&#53;&#x2e;&#52;&#x2e;&#48;</a></li>
-<li><a href="mailto:&#x68;&#101;&#120;&#111;&#x2d;&#x63;&#x6c;&#105;&#x40;&#x34;&#46;&#50;&#x2e;&#48;">&#x68;&#101;&#120;&#111;&#x2d;&#x63;&#x6c;&#105;&#x40;&#x34;&#46;&#50;&#x2e;&#48;</a></li>
+<li><a href="mailto:&#x6e;&#x6f;&#x64;&#x65;&#46;&#x6a;&#x73;&#x40;&#49;&#50;&#46;&#x31;&#x33;&#46;&#x30;">&#x6e;&#x6f;&#x64;&#x65;&#46;&#x6a;&#x73;&#x40;&#49;&#50;&#46;&#x31;&#x33;&#46;&#x30;</a></li>
+<li><a href="mailto:&#x67;&#x69;&#116;&#x40;&#x32;&#46;&#x32;&#x33;&#x2e;&#48;&#x2e;&#119;&#x69;&#x6e;&#100;&#x6f;&#119;&#115;&#x2e;&#x31;">&#x67;&#x69;&#116;&#x40;&#x32;&#46;&#x32;&#x33;&#x2e;&#48;&#x2e;&#119;&#x69;&#x6e;&#100;&#x6f;&#119;&#115;&#x2e;&#x31;</a></li>
+<li><a href="mailto:&#104;&#101;&#120;&#111;&#x40;&#x35;&#46;&#x34;&#x2e;&#x30;">&#104;&#101;&#120;&#111;&#x40;&#x35;&#46;&#x34;&#x2e;&#x30;</a></li>
+<li><a href="mailto:&#x68;&#x65;&#x78;&#111;&#x2d;&#x63;&#x6c;&#105;&#64;&#x34;&#x2e;&#x32;&#46;&#x30;">&#x68;&#x65;&#x78;&#111;&#x2d;&#x63;&#x6c;&#105;&#64;&#x34;&#x2e;&#x32;&#46;&#x30;</a></li>
 </ul>
 <h2 id="搭建-Github-博客"><a href="#搭建-Github-博客" class="headerlink" title="搭建 Github 博客"></a>搭建 Github 博客</h2><h3 id="2-1-创建仓库"><a href="#2-1-创建仓库" class="headerlink" title="2.1. 创建仓库"></a>2.1. 创建仓库</h3><p>新建一个名为<code>&#123;username&#125;.github.io</code>的仓库，比如说，如果你的 Github 用户名是 test，那么你就新建<code>test.github.io</code>的仓库（必须是你的用户名，其它名称无效），将来你的网站访问地址就是 <a target="_blank" rel="noopener" href="http://test.github.io/">http://test.github.io</a>。</p>
 <p>由此可见，每一个 Github 账户最多只能创建一个这样可以直接使用域名访问的仓库。</p>
@@ -175,9 +175,9 @@
 </ol>
 <h3 id="2-2-绑定域名"><a href="#2-2-绑定域名" class="headerlink" title="2.2. 绑定域名"></a>2.2. 绑定域名</h3><p>首先你要注册一个域名，域名注册推荐去国内的阿里云。绑定域名分2种情况：带 www 和不带 www 的。</p>
 <p>域名配置最常见有2种方式，CNAME 和 A 记录，CNAME 填写域名，A 记录填写 IP，由于不带 www 方式只能采用 A 记录，所以必须先 ping 一下<code>&#123;username&#125;.github.io</code>的 IP，然后到你的域名 DNS 设置页，将 A 记录指向你 ping 出来的 IP，将 CNAME 指向<code>&#123;username&#125;.github.io</code>，这样可以保证无论是否添加 www 都可以访问，如下：</p>
-<img src="C:\Users\www12\Desktop\文档收录\常用文档\Typora Files\md_pic\20210522092139.png" alt="image-20210522090333842" style="zoom: 80%;" />
+<img src="https://lpxz.oss-cn-zhangjiakou.aliyuncs.com/picgo/20210522092139.png" alt="image-20210522090333842" style="zoom: 80%;" />
 
-<img src="C:\Users\www12\Desktop\文档收录\常用文档\Typora Files\md_pic\20210522092144.png" alt="image-20210522090753992" style="zoom:67%;" />
+<img src="https://lpxz.oss-cn-zhangjiakou.aliyuncs.com/picgo/20210522092144.png" alt="image-20210522090753992" style="zoom:67%;" />
 
 <p>然后到你的 Github 项目根目录新建一个名为 CNAME 的文件（无后缀），里面填写你的域名，加不加 www 看你自己喜好，因为经测试：</p>
 <ul>
@@ -193,7 +193,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;邮件地址&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>然后连续3次回车，最终会生成一个文件在用户目录下，打开用户目录，找到<code>.ssh\id_rsa.pub</code>文件，记事本打开并复制里面的内容，打开你的Github 主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key：</p>
-<img src="C:\Users\www12\Desktop\文档收录\常用文档\Typora Files\md_pic\20210522092157.png" alt="img" style="zoom:80%;" />
+<img src="https://lpxz.oss-cn-zhangjiakou.aliyuncs.com/picgo/20210522092157.png" alt="img" style="zoom:80%;" />
 
 <p>将刚复制的内容粘贴到 key 那里，title 随便填，保存。</p>
 <h3 id="测试是否成功"><a href="#测试是否成功" class="headerlink" title="测试是否成功"></a>测试是否成功</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com <span class="comment"># 注意邮箱地址不用改</span></span><br></pre></td></tr></table></figure>
@@ -220,14 +220,14 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /f/Workspaces/hexo/</span><br><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
 
 <p>Hexo 会自动下载一些文件到这个目录，包括 node_modules，目录结构如下图：</p>
-<p>![img](C:\Users\www12\Desktop\文档收录\常用文档\Typora Files\md_pic\20210522092204.png)</p>
+<p><img src="https://lpxz.oss-cn-zhangjiakou.aliyuncs.com/picgo/20210522092204.png" alt="img"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g <span class="comment"># 生成</span></span><br><span class="line">$ hexo s <span class="comment"># 启动服务</span></span><br></pre></td></tr></table></figure>
 
 <p>执行以上命令之后，Hexo 就会在 public 文件夹生成相关 html 文件，这些文件将来都是要提交到 Github 去的：</p>
-<p>![img](C:\Users\www12\Desktop\文档收录\常用文档\Typora Files\md_pic\20210522092209.png)</p>
+<p><img src="https://lpxz.oss-cn-zhangjiakou.aliyuncs.com/picgo/20210522092209.png" alt="img"></p>
 <p><code>hexo s</code>是开启本地预览服务，打开浏览器访问 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 即可看到内容，很多人会碰到浏览器一直在转圈但是就是加载不出来的问题，一般情况下是因为端口占用的缘故，解决端口冲突问题请参考这篇文章：<a target="_blank" rel="noopener" href="http://blog.liuxianan.com/windows-port-bind.html">http://blog.liuxianan.com/windows-port-bind.html</a></p>
 <p>第一次初始化的时候 Hexo 已经帮我们写了一篇名为 Hello World 的文章，打开时就是这个样子：</p>
-<img src="C:\Users\www12\Desktop\文档收录\常用文档\Typora Files\md_pic\20210522092502.png" alt="image-20210522092449876"  />
+<img src="https://lpxz.oss-cn-zhangjiakou.aliyuncs.com/picgo/20210522092502.png" alt="image-20210522092449876"  />
 
 <h3 id="4-6-修改主题"><a href="#4-6-修改主题" class="headerlink" title="4.6. 修改主题"></a>4.6. 修改主题</h3><p>首先来替换一个好看点的主题。这是<a target="_blank" rel="noopener" href="https://hexo.io/themes/">官方主题</a>。个人比较喜欢的主题：<a target="_blank" rel="noopener" href="https://github.com/yanm1ng/hexo-theme-vexo">hexo-theme-vexo</a>。</p>
 <p>首先下载这个主题：</p>
@@ -246,7 +246,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 
 <h3 id="4-9-保留-CNAME、README-md-等文件"><a href="#4-9-保留-CNAME、README-md-等文件" class="headerlink" title="4.9. 保留 CNAME、README.md 等文件"></a>4.9. 保留 CNAME、README.md 等文件</h3><p>提交之后网页上一看，发现以前其它代码都没了，此时不要慌，一些非 md 文件可以把他们放到 source 文件夹下，这里的所有文件都会原样复制（除了 md 文件）到 public 目录的：</p>
-<p>![img](C:\Users\www12\Desktop\文档收录\常用文档\Typora Files\md_pic\20210522092536.png)</p>
+<p><img src="https://lpxz.oss-cn-zhangjiakou.aliyuncs.com/picgo/20210522092536.png" alt="img"></p>
 <p>由于 Hexo 默认会把所有 md 文件都转换成 html，包括 README.md，所有需要每次生成之后、上传之前，手动将 README.md 复制到 public 目录，并删除 README.html。</p>
 <h3 id="4-10-常用-Hexo-命令"><a href="#4-10-常用-Hexo-命令" class="headerlink" title="4.10. 常用 Hexo 命令"></a>4.10. 常用 Hexo 命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo new <span class="string">&quot;postName&quot;</span> <span class="comment"># 新建文章</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo new page <span class="string">&quot;pageName&quot;</span> <span class="comment"># 新建页面</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo generate <span class="comment"># 生成静态页面至 public 目录</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo server <span class="comment"># 开启预览访问端口（默认端口4000，&#x27;ctrl + c&#x27;关闭 server）</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo deploy <span class="comment"># 部署到 GitHub</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo <span class="built_in">help</span> <span class="comment"># 查看帮助</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo version <span class="comment"># 查看 Hexo 的版本</span></span></span><br></pre></td></tr></table></figure>
 
@@ -261,9 +261,9 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">&#x27;my-first-blog&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <p>hexo会帮我们在<code>_posts</code>下生成相关md文件：</p>
-<p>![img](C:\Users\www12\Desktop\文档收录\常用文档\Typora Files\md_pic\20210522092540.png)</p>
+<p><img src="https://lpxz.oss-cn-zhangjiakou.aliyuncs.com/picgo/20210522092540.png" alt="img"></p>
 <p>我们只需要打开这个文件就可以开始写博客了，默认生成如下内容：</p>
-<p>![img](C:\Users\www12\Desktop\文档收录\常用文档\Typora Files\md_pic\20210522092547.png)</p>
+<p><img src="https://lpxz.oss-cn-zhangjiakou.aliyuncs.com/picgo/20210522092547.png" alt="img"></p>
 <p>当然你也可以直接自己新建md文件，用这个命令的好处是帮我们自动生成了时间。</p>
 <p>一般完整格式如下：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: postName # 文章页面上的显示名称，一般是中文</span><br><span class="line">date: 2013-12-02 15:30:16 # 文章生成时间，一般不改，当然也可以任意修改</span><br><span class="line">categories: 默认分类 #分类</span><br><span class="line">tags: [tag1,tag2,tag3] # 文章标签，可空，多标签请用格式，注意：后面有个空格</span><br><span class="line"><span class="section">description: 附加一段文章摘要，字数最好在140字以内，会出现在meta的description里面</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"></span><br><span class="line">以下是正文</span><br></pre></td></tr></table></figure>
@@ -272,7 +272,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo new page <span class="string">&quot;my-second-blog&quot;</span></span></span><br></pre></td></tr></table></figure>
 
 <p>生成如下：</p>
-<p>![img](C:\Users\www12\Desktop\文档收录\常用文档\Typora Files\md_pic\20210522092551.png)</p>
+<p><img src="https://lpxz.oss-cn-zhangjiakou.aliyuncs.com/picgo/20210522092551.png" alt="img"></p>
 <p>最终部署时生成：<code>hexo\public\my-second-blog\index.html</code>，但是它不会作为文章出现在博文目录。</p>
 <h4 id="如何让博文列表不显示全部内容"><a href="#如何让博文列表不显示全部内容" class="headerlink" title="如何让博文列表不显示全部内容"></a>如何让博文列表不显示全部内容</h4><p>默认情况下，生成的博文目录会显示全部的文章内容，如何设置文章摘要的长度呢？</p>
 <p>答案是在合适的位置加上<code>&lt;!--more--&gt;</code>即可，例如：</p>
