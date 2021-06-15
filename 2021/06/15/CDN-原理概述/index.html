@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="yanm1ng&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      CDN 原理概述 | LP 学长
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>LP 学长</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>CDN 原理概述</h2>
+  <p class="post-date">2021-06-15</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>CDN（Content Delivery Network，内容分发网络）将源站的内容发布到接近用户的网络“边缘”，用户可以就近获取所需数据，不仅降低了网络的拥塞状况、提高请求的响应速度，也能够减少源站的负载压力。</p>
+<p>很多同学都比较熟悉 CDN 的作用和功能，但是可能也会像我之前一样，对 CDN 的原理不是十分了解。所以本文旨在对 CDN 的工作原理和核心组件进行简要的描述。</p>
+<h3 id="1-访问源站的过程"><a href="#1-访问源站的过程" class="headerlink" title="1. 访问源站的过程"></a>1. 访问源站的过程</h3><p>为了更加清楚地展示 CDN 的原理，我们首先回顾一下不使用缓存直接到源站请求数据的过程：</p>
+<img src="https://lpxz.oss-cn-zhangjiakou.aliyuncs.com/picgo/20201210131338.jpg" alt="img" style="zoom:80%;" />
+
+
+
+<p>如上图所示，如果要访问的网站名为：”join.qq.com”，客户端首先会在本机的 hosts 文件和 hosts 缓存中查找该域名对应的 IP 地址；如果本机中没有此信息，则会到我们的<code>本地DNS</code>进行询问该域名对应的 IP 地址；如果本地DNS中仍然没有该域名的 IP 信息时，则会由本地 DNS 依次向<code>根DNS</code>、<code>顶级域DNS</code>、<code>权威DNS</code>进行询问，最终<code>本地DNS</code>将 IP 地址发送给客户端。客户端通过 IP 地址向远程的源站服务器发出 HTTP 请求并获取相应的数据内容。</p>
+<p>以上是通过 DNS 的<code>迭代解析</code>模式获取域名对应的 IP 地址并发送 HTTP 请求的过程。源站的提供商通过配置权威 DNS 将源站的域名与提供服务的服务器主机进行绑定，使客户端通过 DNS 服务可以顺利地获取源站域名对应的 IP 地址并通过 IP 地址与源站进行通信。</p>
+<h4 id="DNS-的记录类型"><a href="#DNS-的记录类型" class="headerlink" title="DNS 的记录类型"></a>DNS 的记录类型</h4><p>为了方便后续的讨论，需要了解 DNS 是如何对查询请求进行应答的。</p>
+<p>在 DNS 系统中，最常见的资源记录方式是 Internet 类记录，该记录由包含4个字段的数据构成：Name、Value、Type、TTL。其中 Name 和 Value 可以理解为一对键值对，但是其具体含义取决于 Type 的类型，TTL 记录了该条记录应当从缓存中删除的时间。在资源记录的类型中中，最为常见且重要的类型 Type 主要有：</p>
+<ol>
+<li><p>A 记录（Address）</p>
+<p>A 记录用于描述目标域名到 IP 地址的映射关系，将目标域名与 A 记录的 Name 字段进行匹配，将成功匹配的记录的 Value 字段的内容（IP 地址）输出到 DNS 回应报文中。</p>
+</li>
+<li><p>NS 记录（Name Server）</p>
+<p>NS 记录用于描述目标域名到负责解析该域名的 DNS 的映射关系，根据目标域名对 NS 记录的 Name 字段进行匹配，将成功匹配的记录的 Value 字段（负责解析目标域名的 DNS 的 IP 地址）输出到 DNS 回应报文中。</p>
+</li>
+<li><p>CNAME 记录</p>
+<p>CNAME 记录用于描述目的域名和别名的对应关系，如果说 A 记录可以将目标域名转换为对应主机的 IP 地址，那么 CNAME 记录则可以将一个域名（别名）转换为另一个域名，如果多条 CNAME 记录指向同一个域名，则可以将多个不同的域名的请求指向同一台服务器主机。并且，CNAME 记录通常还对应了一条 A 记录，用于提供被转换的域名的 IP 地址。</p>
+</li>
+</ol>
+<h3 id="2-通过-CDN-获取缓存内容的过程"><a href="#2-通过-CDN-获取缓存内容的过程" class="headerlink" title="2. 通过 CDN 获取缓存内容的过程"></a>2. 通过 CDN 获取缓存内容的过程</h3><p>在上一章节中主要介绍了通过 DNS 服务直接访问源站的请求响应过程。与其不同的是，CDN 将我们对源站的请求导向了距离用户较近的缓存节点，而非源站。</p>
+<p>如图所示是通过 CDN 进行请求响应的过程图。通过图中可以看出，在 DNS 解析域名时新增了一个<code>全局负载均衡系统（GSLB）</code>，GSLB 的主要功能是根据用户的本地 DNS 的 IP 地址判断用户的位置，筛选出距离用户较近的<code>本地负载均衡系统（SLB）</code>，并将该 SLB 的 IP 地址作为结果返回给本地 DNS。SLB 主要负责判断<code>缓存服务器集群</code>中是否包含用户请求的资源数据，如果缓存服务器中存在请求的资源，则根据缓存服务器集群中节点的健康程度、负载量、连接数等因素筛选出最优的缓存节点，并将 HTTP 请求重定向到最优的缓存节点上。</p>
+<img src="https://lpxz.oss-cn-zhangjiakou.aliyuncs.com/picgo/20201210131304.jpg" alt="img" style="zoom:80%;" />
+
+<p>为了更清晰地说明 CDN 的工作原理，下面以客户端发起对”join.qq.com/video.php”的 HTTP 请求为例进行说明：</p>
+<ol>
+<li>用户发起对”join.qq.com/video.php”的 HTTP 请求，首先需要通过本地 DNS 通过”迭代解析”的方式获取域名”join.qq.com”的 IP 地址；</li>
+<li>如果本地 DNS 的缓存中没有该域名的记录，则向<code>根DNS</code>发送 DNS 查询报文；</li>
+<li><code>根DNS</code>发现域名的前缀为”com”，则给出负责解析<code>com</code>的<code>顶级DNS</code>的 IP 地址；</li>
+<li>本地 DNS 向<code>顶级DNS</code>发送 DNS 查询报文；</li>
+<li><code>顶级DNS</code>发现域名的前缀为”qq.com”，在本地记录中查找负责该前缀的<code>权威DNS</code>的 IP 地址并进行回复；</li>
+<li>本地 DNS 向<code>权威DNS</code>发送 DNS 查询报文；</li>
+<li>权威 DNS 查找到一条 NAME 字段为”join.qq.com”的<code>CNAME记录</code>（由服务提供者配置），该记录的 Value 字段为”join.qq.cdn.com”；并且还找到另一条 NAME 字段为”join.qq.cdn.com”的 A 记录，该记录的 Value 字段为 GSLB 的 IP 地址；</li>
+<li>本地 DNS 向 GSLB 发送 DNS 查询报文；</li>
+<li>GSLB 根据<code>本地DNS</code>的 IP 地址判断用户的大致位置为深圳，筛选出位于华南地区且综合考量最优的 SLB 的 IP 地址填入 DNS 回应报文，作为 DNS 查询的最终结果；</li>
+<li>本地 DNS 回复客户端的 DNS 请求，将上一步的 IP 地址作为最终结果回复给客户端；</li>
+<li>客户端根据 IP 地址向 SLB 发送 HTTP 请求：”<a target="_blank" rel="noopener" href="https://join.qq.com/video.php">join.qq.com/video.php</a>“；</li>
+<li>SLB 综合考虑缓存服务器集群中各个节点的资源限制条件、健康度、负载情况等因素，筛选出最优的缓存节点后回应客户端的 HTTP 请求（状态码为302，重定向地址为最优缓存节点的 IP 地址）；</li>
+<li>客户端接收到 SLB 的 HTTP 回复后，重定向到该缓存节点上；</li>
+<li>缓存节点判断请求的资源是否存在、过期，将缓存的资源直接回复给客户端，否则到源站进行数据更新再回复。</li>
+</ol>
+<p>其中较为关键的步骤为 6~9，与普通的 DNS 过程不同的是，这里需要服务提供者（源站）配置它在其权威 DNS 中的记录，将直接指向源站的 A 记录修改为一条 CNAME 记录及其对应的 A 记录，CNAME 记录将目标域名转换为 GSLB 的别名，A 记录又将该别名转换为 GSLB 的 IP 地址。通过这一系列的操作，将解析源站的目标域名的权力交给了 GSLB，以致于 GSLB 可以根据地理位置等信息将用户的请求引导至距离其最近的 “ 缓存节点 “，减缓了源站的负载压力和网络拥塞。</p>
+<p>以上主要介绍了目前 CDN 中最为常见的工作方式，这种工作方式利用 CNAME 将域名和目标 IP 之间进行解耦，将目标 IP 的解析权下放到 GSLB 中，方便实现更多自定义的功能，是一种更加灵活的方式。</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#默认分类" >
+    <span class="tag-code">默认分类</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2021/05/22/Hexo+Github%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+        <span class="nav-arrow">← </span>
+        
+          Hexo+Github 搭建个人博客
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo=""
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-%E8%AE%BF%E9%97%AE%E6%BA%90%E7%AB%99%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-nav-text">1. 访问源站的过程</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#DNS-%E7%9A%84%E8%AE%B0%E5%BD%95%E7%B1%BB%E5%9E%8B"><span class="toc-nav-text">DNS 的记录类型</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-%E9%80%9A%E8%BF%87-CDN-%E8%8E%B7%E5%8F%96%E7%BC%93%E5%AD%98%E5%86%85%E5%AE%B9%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-nav-text">2. 通过 CDN 获取缓存内容的过程</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'https://liupipipi.github.io/2021/06/15/CDN-原理概述/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2021 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+  </body>
+</html>
