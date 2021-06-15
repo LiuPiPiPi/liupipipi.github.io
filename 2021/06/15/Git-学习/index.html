@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="yanm1ng&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Git 学习 | LP 学长
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>LP 学长</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Git 学习</h2>
+  <p class="post-date">2021-06-15</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><blockquote>
+<p>以下知识点来源：神州信息岗前培训资料</p>
+</blockquote>
+<h2 id="1-创建版本库"><a href="#1-创建版本库" class="headerlink" title="1.创建版本库"></a>1.创建版本库</h2><ul>
+<li><p>版本库又名仓库，英文名称是repository</p>
+</li>
+<li><p>如何创建一个版本库，</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir GitRepository</span><br><span class="line">cd GitRepository</span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>  这样一个新的版本库就建立好了</p>
+<h2 id="2-添加文件到版本当前版本库"><a href="#2-添加文件到版本当前版本库" class="headerlink" title="2.  添加文件到版本当前版本库"></a>2.  添加文件到版本当前版本库</h2></li>
+<li><p>下面是操作命令</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim readme,txt 内容随意</span><br><span class="line">git add readme.txt  添加文件到仓库</span><br><span class="line">git commit -m <span class="string">&#x27;本次提交的说明,具有意义的说明&#x27;</span>  将文件提交到仓库</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">&#x27;wrote a readme file again&#x27;</span></span><br><span class="line">[master f4294a4] wrote a readme file again</span><br><span class="line"><span class="number">1</span> file changed, <span class="number">1</span> insertion(+), <span class="number">1</span> deletion(-)</span><br></pre></td></tr></table></figure></li>
+<li><p>上面的提示告诉我们，1个文件被改动(添加了1个新的文件)，插入了1行内容() 1行缺失</p>
+<pre><code>  疑问：为啥有了git add, 还需要git commit -m &#39; &#39; 
+</code></pre>
+<p>  因为git commit一次可以提交很多文件，所以你可以多次add不同的文件,比如:</p>
+<pre><code>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add file1.txt</span><br><span class="line">git add file2.txt file3.txt</span><br><span class="line">git commit -m &#x27;add 3 files&#x27;</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+<h2 id="3-修改文件"><a href="#3-修改文件" class="headerlink" title="3.修改文件"></a>3.修改文件</h2><ul>
+<li><p>下面是操作命令</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim readme.txt 随意修改</span><br><span class="line">git status 查看当前版本库的状态</span><br></pre></td></tr></table></figure>
+
+<p>显示结果为</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">位于分支 master</span><br><span class="line">尚未暂存以备提交的变更：</span><br><span class="line">	（使用 <span class="string">&quot;git add &lt;文件&gt;...&quot;</span> 更新要提交的内容）</span><br><span class="line">	（使用 <span class="string">&quot;git checkout -- &lt;文件&gt;...&quot;</span> 丢弃工作区的改动）</span><br><span class="line">		修改：     readme.txt</span><br><span class="line">修改尚未加入提交（使用 <span class="string">&quot;git add&quot;</span> 和/或 <span class="string">&quot;git commit -a&quot;</span>）</span><br></pre></td></tr></table></figure></li>
+<li><p>上面的提示告诉我们readme.txt文件已经被我们修改了,但是还没有准备提交</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git diff readme.txt  查看readme.txt文件哪里被修改</span><br><span class="line">diff --git a/readme.txt b/readme.txt</span><br><span class="line">	index f362e74..be74d7a <span class="number">100644</span></span><br><span class="line">	--- a/readme.txt</span><br><span class="line">	+++ b/readme.txt</span><br><span class="line">	@@ -<span class="number">1</span>,<span class="number">2</span> +<span class="number">1</span>,<span class="number">2</span> @@</span><br><span class="line">	-Git is a version control system</span><br><span class="line">	+Git is a distributted version control system</span><br><span class="line">	Git is a free software</span><br></pre></td></tr></table></figure></li>
+<li><p>上面的提示告诉我们，我们增加了一个”distributted”单词<br>知道了是什么修改之后我们可以提交修改后的文档</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git add readme.txt</span><br><span class="line">git status 查看状态</span><br><span class="line">位于分支 master</span><br><span class="line">	要提交的变更：</span><br><span class="line"> 	（使用 <span class="string">&quot;git reset HEAD &lt;文件&gt;...&quot;</span> 以取消暂存）</span><br><span class="line">		修改：     readme.txt</span><br><span class="line">上面的提示告诉我们，将要被提交的修改包括readme.txt</span><br><span class="line">git commit -m <span class="string">&#x27;add distributted&#x27;</span></span><br><span class="line">git status 查看状态</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="4-版本回退"><a href="#4-版本回退" class="headerlink" title="4.版本回退"></a>4.版本回退</h2><ul>
+<li><p>一个文件需要不停的修改，commit被理解为是保存一个快照，依靠快照可以进行文件版本的回退和前进</p>
+</li>
+<li><p>-readme.txt文件有两个commit<br>git log  查看最近到最远的提交日志</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">commit <span class="title">e8574e2fb9c41064114a3c4cd95e59f89e5d6aa8</span> <span class="params">(HEAD -&gt; master)</span></span></span><br><span class="line"><span class="function">Author: suhang &lt;1552899301@qq.com&gt;</span></span><br><span class="line"><span class="function">Date:   Sat Apr 20 17:23:04 2019 +0800</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">add distributted</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">commit f4294a40f471bd8643020e8b9d244af02182b241</span></span><br><span class="line"><span class="function">Author: suhang &lt;1552899301@qq.com&gt;</span></span><br><span class="line"><span class="function">Date:   Sat Apr 20 16:45:30 2019 +0800</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">wrote a readme file again</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">commit 99222c5143e88259af1ee1acf3f482c1a50b2d68</span></span><br><span class="line"><span class="function">Author: suhang &lt;1552899301@qq.com&gt;</span></span><br><span class="line"><span class="function">Date:   Sat Apr 20 16:07:31 2019 +0800</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">wrote a readme file</span></span><br></pre></td></tr></table></figure></li>
+<li><p>日志按照修改时间从上往下为近到远<br> 用HEAD表示当前版本 上一个版本就是HEAD^, 上上一个版本就是HEAD^^， 向上100个版本就是HEAD^~100</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD^  返回上一个版本</span><br></pre></td></tr></table></figure></li>
+<li><p>既然返回上一个版本，怎样返回去呢，使用版本号可以回去(使用git reflog)查看使用命令，此时查看每一个版本的版本号</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard e8574  e8574为commit 的前几位- </span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="5-工作区-Working-Directory"><a href="#5-工作区-Working-Directory" class="headerlink" title="5.工作区(Working Directory)"></a>5.工作区(Working Directory)</h2><ul>
+<li><p>gitspeace就是一个工作区</p>
+<h2 id="6-版本库-Repository"><a href="#6-版本库-Repository" class="headerlink" title="6.版本库(Repository)"></a>6.版本库(Repository)</h2></li>
+<li><p>工作区有一个隐藏的目录.git 这个不算工作区，算是Git的版本库</p>
+</li>
+<li><p>Git的版本库中存放着许多的文件，最为重要的是stage或者叫index的暂存区，还有Git为我们创建的一个分支master。</p>
+</li>
+<li><p>可以简单的理解为:使用git add可以把需要提交的文件修改通通添加到stage(index)暂存区, 然后再使用git commit -m ‘提示’ 将暂存区的文件一次性提交到master分支</p>
+<h2 id="7-管理修改"><a href="#7-管理修改" class="headerlink" title="7.管理修改"></a>7.管理修改</h2></li>
+<li><p>Git具有跟踪修改的特点: 第一次修改 git add 第二次修改 git commit</p>
+</li>
+<li><p>上面的流程第二次修改是不会成功的，因为每一次修改之后，不使用git add到暂存区，就不会加入到commit中</p>
+</li>
+<li><p>上面的流程可以更改为: 第一次修改 git add 第二次修改 git add 最后git commit</p>
+<h2 id="8-撤销修改"><a href="#8-撤销修改" class="headerlink" title="8.撤销修改"></a>8.撤销修改</h2></li>
+<li><p>(1).更改文件之后，但是没有使用git add将修改文件添加到暂存区，可以使用一下命令</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -- filename 丢弃工作区的改动</span><br></pre></td></tr></table></figure></li>
+<li><p>(2).如果将文件修改之后，而且使用了git add将文件添加到暂存区，但是没有使用git commit添加到分支，此时使用git reset HEAD <file> 取消暂存此时修改之后而且被添加到暂存区的文件，将会回退到到工作区，注意的是被修改的状态仍未被回退，使用git checkout – filename 放弃工作区的修改</p>
+</li>
+</ul>
+<h2 id="9-删除文件"><a href="#9-删除文件" class="headerlink" title="9.删除文件"></a>9.删除文件</h2><ul>
+<li><p>当你删除了工作区的文件之后，使用git status查看当前版本库的状态</p>
+</li>
+<li><p>使用git checkout – filename撤销删除 (将版本库中的文件替换到工作区)或者使用git rm 删除版本库的文件</p>
+</li>
+<li><p>使用git commit ‘remove file’ 添加快照</p>
+<h2 id="10-配置github-远程仓库"><a href="#10-配置github-远程仓库" class="headerlink" title="10.配置github 远程仓库"></a>10.配置github 远程仓库</h2></li>
+<li><p>下面是操作命令</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;1552899301@qq.com&quot;</span></span><br><span class="line">回车 默认秘钥生成位置为.ssh/ 输入秘钥密码(可选),此密码在git remote add origin git<span class="meta">@github</span>.com:username/yourRepository.git(关联远程仓库)时候使用</span><br><span class="line">然后git push -u origin master 推送内容到远程库上</span><br><span class="line">因为远程库是空的，我们第一次推送master分支时候，加上-u参数,不但会</span><br><span class="line">把本地的master分支内容推送到远程的新仓库，还把本地的master和本地的master关联起来</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="11-从远程仓库克隆"><a href="#11-从远程仓库克隆" class="headerlink" title="11.从远程仓库克隆"></a>11.从远程仓库克隆</h2><ul>
+<li><p>首先，在github官网上创建仓库，然后克隆到本地 记得勾选Initialize this repository a README</p>
+</li>
+<li><p>使用git clone <a href="mailto:&#x67;&#105;&#x74;&#x40;&#x67;&#x69;&#x74;&#x68;&#x75;&#98;&#46;&#99;&#111;&#109;">&#x67;&#105;&#x74;&#x40;&#x67;&#x69;&#x74;&#x68;&#x75;&#98;&#46;&#99;&#111;&#109;</a>:yourname/yourRepository.git</p>
+<h2 id="12-分支管理"><a href="#12-分支管理" class="headerlink" title="12.分支管理"></a>12.分支管理</h2></li>
+<li><p>分支的作用是，当你准备开发一个新的功能的时候，但是需要两周才能完成，第一周你写了50%的代码，如果不能立刻提交，由于代码还没完成，不完整的代码库会导致别人无法工作，如果等代码全部再一次提交，又存在丢失进度的风险,现在有了分支,就不用怕了。你创建了一个属于你自己的分支，别人看不到，还继续在原来的的分支上正常工作，而你在你的分支上干活，想提交提交，直到开发完毕后，再一次性合并到原来的分支上，这样，既安全，又不会影响别人工作。</p>
+<h2 id="13-创建分支"><a href="#13-创建分支" class="headerlink" title="13.创建分支"></a>13.创建分支</h2></li>
+<li><p>在版本会退中，你已经知道，每一次提交，Git都把他们串成一条时间线，这条时间线就是一个分支，Git中的master分支称为主分支，HEAD严格来说并不是指向提交，而是指向master,master才指向提交，所以HEAD指向的是当前分支</p>
+</li>
+<li><p>一开始的时候，master分支是一条线，Git用master指向最新的提交，再用HEAD指向master，就能确定当前分支，以及当前分支的提交点:</p>
+</li>
+<li><p>每次提交，master分支都会向前移动一步，Git用master指向最新的提交，再用HEAD指向master，就能确定当前分支，以及当前分支的提交点</p>
+</li>
+<li><p>每一次提交，master分支都会向前移动一步，这样随着不断的提交，master分支的线会越来越长当我们创建新的分支的时候，例如dev，Git新建了一个指针dev，指向master相同的提交，再把HEAD指向dev，就表示在当前分支在dev上现在会与工作区的修改和提交就是针对dev分支了，比如，提交一次之后，dev向前移动一步，而master指针不变，假如我们在dev上的工作完成了，就可以把dev合并到master上</p>
+</li>
+<li><p>下面是一个简单的操作:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">创建一个dev分支，然后切换到dev分支:</span><br><span class="line">    	git checkout -b dev</span><br><span class="line">然后查看当前分支</span><br><span class="line">    	git branch  会在当前分支前面标记一个*</span><br><span class="line">此时修改readme.txt 增加随意的一句话</span><br><span class="line">dev的分支的工作完成之后，我们就可以切换回master分支:</span><br><span class="line">    	git checkout master</span><br><span class="line">此时查看readme.txt 发现文件并没有改变，原因在于改变文件的操作是在dev分支上完成的,跟master没有任何关系,这时候我们需要完成合并分支的操作</span><br><span class="line">    	git merge dev  将当前分支合并(master)到dev上</span><br><span class="line">删除dev分支</span><br><span class="line">    	git branch -b dev</span><br></pre></td></tr></table></figure>
+<h2 id="14-解决冲突"><a href="#14-解决冲突" class="headerlink" title="14.解决冲突"></a>14.解决冲突</h2></li>
+<li><p>在合并分支的时候，会出现冲突问题</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">下面是一个简单的例子:</span><br><span class="line">创建分支fea 并且换为当前分支</span><br><span class="line">    	git checkout -b fea</span><br><span class="line">修改readme.txt 增加一句话 <span class="number">001</span></span><br><span class="line">提交分支:</span><br><span class="line">    	git add readme.txt</span><br><span class="line">    	git commit -m <span class="string">&quot;001&quot;</span></span><br><span class="line">切换到主分支</span><br><span class="line">    	git checkout master</span><br><span class="line">修改readme.txt 增加一句话 <span class="number">002</span></span><br><span class="line">提交分支:</span><br><span class="line">    	git add readme.txt</span><br><span class="line">    	git commit -m <span class="string">&quot;002&quot;</span></span><br><span class="line">合并分支 </span><br><span class="line">    	git merge fea</span><br><span class="line">提示报错,因为，两个分支分别对文件进行了不同的修改，自然无法合并。此时需要解决冲突，就是修改刚才合并失败的文件</span><br><span class="line">    	vim readme.txt</span><br><span class="line">分之<span class="number">1</span>:<span class="number">001</span></span><br><span class="line">分支<span class="number">2</span>:<span class="number">002</span></span><br><span class="line">随便删除一个就好</span><br><span class="line">提交分支:</span><br><span class="line">    	git add readme.txt</span><br><span class="line">    	git commit -m <span class="string">&quot;fixed&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="15-分支管理策略"><a href="#15-分支管理策略" class="headerlink" title="15.分支管理策略"></a>15.分支管理策略</h2></li>
+<li><p>1.通常合并分支，如果可能，git会采用fast forward模式，但是这种模式下，删除分支之后，会丢失一些分支信息,如果轻质禁用fast forward模式，git就会在merge时，生成一个新的commit,我们从分支历史上就可以看到分支信息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">下面我们使用--on--ff的方式git merge</span><br><span class="line">首先，创建并且切换到dev分支</span><br><span class="line">    	git checkout -b dev</span><br><span class="line">修改readme.txt文件</span><br><span class="line">    	git add readme.txt</span><br><span class="line">    	git commit <span class="string">&quot;add merge&quot;</span></span><br><span class="line">切换到master分支</span><br><span class="line">    	git checkout master</span><br><span class="line">准备合并dev分支，使用--no--ff（禁用fast forward）</span><br><span class="line">    	git merge--no-ff -m <span class="string">&quot;merge with no-ff&quot;</span> dev  本次合并要创建一个新的commit,所以加上-m参数，把commit描述写进去</span><br><span class="line">使用git log看看分支历史</span><br><span class="line">    	git log -- grep -pretty=oneline --abbrev-commit</span><br></pre></td></tr></table></figure></li>
+<li><p>2.分支管理策略</p>
+<ul>
+<li>首先，master分支应该是最稳定的，也就是仅用来发布新版本的，平时不能用来干活;</li>
+<li>平时工作均在dev分支上，也就是说，dev是不稳定的，比如说要发布1.0版本的时候。再把dev分支合并到master上，在master分支上发布1.0版本，你和你的小伙伴都在dev上干活，每个人都有子的分支，时不时的往master上合并<h2 id="16-Bug分支"><a href="#16-Bug分支" class="headerlink" title="16.Bug分支"></a>16.Bug分支</h2></li>
+</ul>
+</li>
+<li><p>在软件开发中，bug就像家常便饭一样，有了bug就需要修复，在Git中，由于分支是如此的强大，所以，每一个bug都可以通过一个新的临时分支修复，合并分支，然后将临时分支删除</p>
+</li>
+<li><p>当你接受到一个修复1号代码，创建一个分支01来修复它，但是，等等当前正在dev上进行的工作还没有提交:</p>
+<ul>
+<li>Git提供了一个stash功能，可以把当前工作现场”储藏”起来，等以后在恢复使用</li>
+</ul>
+</li>
+<li><p>首先确定bug是位于哪一个分支上的，加入在主分支上，就从主分支master创建临时分支</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b <span class="number">01</span></span><br><span class="line">现在修复bug，编辑readme.txt</span><br><span class="line">修复完成后，提交</span><br><span class="line">    git add readme.txt</span><br><span class="line">    git commit -m <span class="string">&quot;bug fixed&quot;</span> </span><br><span class="line">切换分支</span><br><span class="line">    git checkout master</span><br><span class="line">合并分支</span><br><span class="line">    git merge --no-ff -m <span class="string">&quot;merge bug fix 01&quot;</span> <span class="number">01</span></span><br><span class="line">切换回刚才工作的分支</span><br><span class="line">    git checkout dev</span><br><span class="line">    git status 查看状态</span><br><span class="line">显示工作区是干净的</span><br><span class="line">    git stash list 查储藏工作区列表</span><br><span class="line">第一种是：git stash apply恢复 但是stash没有删除，需要使用</span><br><span class="line">    git stash drop 删除 </span><br><span class="line">第二种是：git stash pop 恢复的同时把stash也删除了</span><br><span class="line">可以多次stash 恢复的时候，先用git stash list查看，最后恢复指定的stash git stash apply stash@&#123;<span class="number">0</span>&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="17-新功能分支"><a href="#17-新功能分支" class="headerlink" title="17.新功能分支"></a>17.新功能分支</h2></li>
+<li><p>当你要开发一个新功能的时候，需要创建一个分支，等到新功能开发好，再合并分支，然后删除新的分支</p>
+</li>
+<li><p>使用git branch -D 分支名称  -D 强制删除</p>
+<h2 id="18-多人协作"><a href="#18-多人协作" class="headerlink" title="18.多人协作"></a>18.多人协作</h2></li>
+<li><p>当你从远程仓库克隆时候，实际上把Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin 使用git remote 或者使用 git remote -v显示更详细的信息;</p>
+</li>
+<li><p>例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git remote -v </span><br><span class="line">origingit <span class="meta">@github</span>.com:suhang12332/gitspeace.git(fetch)</span><br><span class="line">origin git<span class="meta">@github</span>.com:suhang12332/gitspeace.git(push)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>上面显示了可以抓取和推送的origin的地址，如果没有推送权限，就看不到push的地址</p>
+<ul>
+<li><p>推送分支:就是把该分支上的所有本地提交推送到远程库。推送时，要指定本地分支，这样，Git就会把该分支推送到远程库对应的远程分支上；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br><span class="line">如果需要推送其他分支,比如dev</span><br><span class="line">git push origin dev</span><br></pre></td></tr></table></figure></li>
+<li><p>抓取分支</p>
+<ul>
+<li><p>多人协作时，大家都会往master和dev分支上推送各自修改。现在，模拟一个你的小伙伴，可以在另一台电脑(注意要把SSH添加到github)或者同一台电脑的另一个目录下克隆</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git<span class="meta">@github</span>.com:suhang12332/gitspeace.git</span><br></pre></td></tr></table></figure></li>
+<li><p>当你的小伙伴从远程clone时，默认情况下，你的小伙伴只能看到本地的master分支 使用git branch 现在，你的小伙伴要在dev上开发分支，就必须创建origin到dev分支到本地dev</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev origin/dev</span><br><span class="line">创建完成后，就可以在dev分支上继续修改，然后时不时的将dev分支推送到远程分支上</span><br><span class="line">       git add ***.txt</span><br><span class="line">       git commit -m <span class="string">&quot;add ***&quot;</span></span><br><span class="line">       此时你也向origin/dev分支提交，并试图推送，</span><br><span class="line">       git add ***.txt</span><br><span class="line">       git commit -m <span class="string">&quot;add new ***&quot;</span></span><br><span class="line">       git push origin dev</span><br></pre></td></tr></table></figure></li>
+<li><p>推送失败，因为你的小伙伴的最新提交和你试图提交有冲突，解决办法很简单，git已经提示我们，先用git pull把最新的origin/dev抓下来，然后合并，解决冲突，再推送 </p>
+</li>
+<li><p>git pull 这样使用是失败的因为你没有指定本地dev与远程origindev分支的链接，根据提示,设置dev和origin/dev的链接</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch --set-upstream-to=origin/dev/dev</span><br><span class="line">git pull</span><br></pre></td></tr></table></figure></li>
+<li><p>可以总结:多人协作的模式如下：</p>
+<ul>
+<li>1.首先，可以试图git push origin <origin-name>推送自己的修改</li>
+<li>2.如果推送失败，因为远程分支比你本地更新，首先使用git pull合并</li>
+<li>3.合并之前要指定本地的分支与远程的分支链接 git branch –set-upstream-to=origin/dev/dev<pre><code>     - 4.合并没有冲突，即本地提交，有冲突，解决冲突
+              - 5.没有冲突使用 
+</code></pre>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin &lt;branch name&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="19-整理分支合并"><a href="#19-整理分支合并" class="headerlink" title="19.整理分支合并"></a>19.整理分支合并</h2><ul>
+<li>使用git rebase整理 使用、查看</li>
+</ul>
+<h2 id="20-标签管理"><a href="#20-标签管理" class="headerlink" title="20.标签管理"></a>20.标签管理</h2><ul>
+<li><p>创建标签:首先切换到需要打标签的分支上</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout master </span><br></pre></td></tr></table></figure></li>
+<li><p>然后</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git tag v1<span class="number">.0</span></span><br><span class="line">使用 -a指定标签名字 使用-m指定说明文字</span><br><span class="line">git tag -a v0<span class="number">.9</span> -m<span class="string">&quot;version0.9&quot;</span> commit号码使用git tag查看所有标签</span><br><span class="line">还可以使用git tag v1<span class="number">.0</span> commit号码,标签的顺序是按照字母的顺序排列的</span><br><span class="line">使用show tagname查看标签属性	</span><br></pre></td></tr></table></figure></li>
+<li><p>操作标签: 打错名字可以删除:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag -d tagname</span><br></pre></td></tr></table></figure></li>
+<li><p>推送标签到远程</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin tagname</span><br></pre></td></tr></table></figure></li>
+<li><p>说着一次性推送完所有的标签</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin -tags</span><br></pre></td></tr></table></figure></li>
+<li><p>删除远程标签;先删除本地，再删除远程</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin :refs/tags/v0<span class="number">.9</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><h2 id="1-限制-clone-深度，加快下载速度"><a href="#1-限制-clone-深度，加快下载速度" class="headerlink" title="1.限制 clone 深度，加快下载速度"></a>1.限制 clone 深度，加快下载速度</h2><p> <strong>仅是 clone 此仓库学习（不是参与翻译工作）的话，请使用如下 Git 命令</strong>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone --depth 1 https://github.com/labuladong/fucking-algorithm.git</span><br></pre></td></tr></table></figure>
+
+<p>这样会限制 clone 的深度，不会下载 Git 协作的历史记录，可以极大加快下载速度。</p>
+<h2 id="2-解决：’touch’-不是内部或外部命令，也不是可运行的程序或批处理文件"><a href="#2-解决：’touch’-不是内部或外部命令，也不是可运行的程序或批处理文件" class="headerlink" title="2.解决：’touch’ 不是内部或外部命令，也不是可运行的程序或批处理文件"></a>2.解决：’touch’ 不是内部或外部命令，也不是可运行的程序或批处理文件</h2><p>在 Windows 的 cmd 中我们可以使用 echo test&gt;</p>
+<img src="https://lpxz.oss-cn-zhangjiakou.aliyuncs.com/picgo/20201210131634.png" alt="image-20200809183113702" style="zoom:80%;" /></section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Git" >
+    <span class="tag-code">Git</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2021/06/15/CentOS-7-Halo-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
+        <span class="nav-arrow">← </span>
+        
+          CentOS 7 Halo 博客搭建
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo=""
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1-%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93"><span class="toc-nav-text">1.创建版本库</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2-%E6%B7%BB%E5%8A%A0%E6%96%87%E4%BB%B6%E5%88%B0%E7%89%88%E6%9C%AC%E5%BD%93%E5%89%8D%E7%89%88%E6%9C%AC%E5%BA%93"><span class="toc-nav-text">2.  添加文件到版本当前版本库</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6"><span class="toc-nav-text">3.修改文件</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#4-%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80"><span class="toc-nav-text">4.版本回退</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#5-%E5%B7%A5%E4%BD%9C%E5%8C%BA-Working-Directory"><span class="toc-nav-text">5.工作区(Working Directory)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#6-%E7%89%88%E6%9C%AC%E5%BA%93-Repository"><span class="toc-nav-text">6.版本库(Repository)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#7-%E7%AE%A1%E7%90%86%E4%BF%AE%E6%94%B9"><span class="toc-nav-text">7.管理修改</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#8-%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9"><span class="toc-nav-text">8.撤销修改</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#9-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="toc-nav-text">9.删除文件</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#10-%E9%85%8D%E7%BD%AEgithub-%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="toc-nav-text">10.配置github 远程仓库</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#11-%E4%BB%8E%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%85%8B%E9%9A%86"><span class="toc-nav-text">11.从远程仓库克隆</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#12-%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86"><span class="toc-nav-text">12.分支管理</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#13-%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF"><span class="toc-nav-text">13.创建分支</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#14-%E8%A7%A3%E5%86%B3%E5%86%B2%E7%AA%81"><span class="toc-nav-text">14.解决冲突</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#15-%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86%E7%AD%96%E7%95%A5"><span class="toc-nav-text">15.分支管理策略</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#16-Bug%E5%88%86%E6%94%AF"><span class="toc-nav-text">16.Bug分支</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#17-%E6%96%B0%E5%8A%9F%E8%83%BD%E5%88%86%E6%94%AF"><span class="toc-nav-text">17.新功能分支</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#18-%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C"><span class="toc-nav-text">18.多人协作</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#19-%E6%95%B4%E7%90%86%E5%88%86%E6%94%AF%E5%90%88%E5%B9%B6"><span class="toc-nav-text">19.整理分支合并</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#20-%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86"><span class="toc-nav-text">20.标签管理</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Tips"><span class="toc-nav-text">Tips</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1-%E9%99%90%E5%88%B6-clone-%E6%B7%B1%E5%BA%A6%EF%BC%8C%E5%8A%A0%E5%BF%AB%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6"><span class="toc-nav-text">1.限制 clone 深度，加快下载速度</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2-%E8%A7%A3%E5%86%B3%EF%BC%9A%E2%80%99touch%E2%80%99-%E4%B8%8D%E6%98%AF%E5%86%85%E9%83%A8%E6%88%96%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4%EF%BC%8C%E4%B9%9F%E4%B8%8D%E6%98%AF%E5%8F%AF%E8%BF%90%E8%A1%8C%E7%9A%84%E7%A8%8B%E5%BA%8F%E6%88%96%E6%89%B9%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6"><span class="toc-nav-text">2.解决：’touch’ 不是内部或外部命令，也不是可运行的程序或批处理文件</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'https://liupipipi.github.io/2021/06/15/Git-学习/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2021 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+  </body>
+</html>

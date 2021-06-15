@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="yanm1ng&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Nginx 学习笔记 | LP 学长
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>LP 学长</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Nginx 学习笔记</h2>
+  <p class="post-date">2021-06-15</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="什么是-Nginx？"><a href="#什么是-Nginx？" class="headerlink" title="什么是 Nginx？"></a>什么是 Nginx？</h2><p>Nginx (engine x) 是一个<strong>高性能的 HTTP 和反向代理 Web 服务器</strong>，同时也提供了 IMAP/POP3/SMTP 服务。其特点是<strong>占有内存少，并发能力强</strong>，事实上 Nginx 的并发能力在同类型的网页服务器中表现较好，中国大陆使用 Nginx 网站用户有：百度、京东、新浪、网易、腾讯、淘宝等。在全球活跃的网站中有 12.18% 的使用比率，大约为 2220 万个网站。</p>
+<p>Nginx 是一个安装非常的简单、配置文件非常简洁（还能够支持 perl 语法）、Bug 非常少的服务。Nginx 启动特别容易，并且几乎可以做到 7*24 不间断运行，即使运行数个月也不需要重新启动。你还能够不间断服务的情况下进行软件版本的升级。</p>
+<p>Nginx 代码完全用 C 语言从头写成。官方数据测试表明能够支持高达 50,000 个并发连接数的响应。</p>
+<h2 id="Nginx-作用？"><a href="#Nginx-作用？" class="headerlink" title="Nginx 作用？"></a>Nginx 作用？</h2><blockquote>
+<p><strong>Http 代理，反向代理</strong>：作为 Web 服务器最常用的功能之一，尤其是反向代理。</p>
+</blockquote>
+<ul>
+<li><p>正向代理</p>
+<p><img src="https://lpxz.oss-cn-zhangjiakou.aliyuncs.com/picgo/20210506100122.png" alt="img"></p>
+</li>
+<li><p>反向代理</p>
+<p><img src="https://lpxz.oss-cn-zhangjiakou.aliyuncs.com/picgo/20210506100128.png" alt="img"></p>
+</li>
+</ul>
+<blockquote>
+<p>Nginx提供的负载均衡策略有2种：内置策略和扩展策略。内置策略为轮询，加权轮询，Ip hash。扩展策略，就天马行空，只有你想不到的没有他做不到的。</p>
+</blockquote>
+<blockquote>
+<p>动静分离，在我们的软件开发中，有些请求是需要后台处理的，有些请求是不需要经过后台处理的（如：css、html、jpg、js 等等文件），这些不需要经过后台处理的文件称为静态文件。让动态网站里的动态网页根据一定规则把不变的资源和经常变的资源区分开来，动静资源做好了拆分以后，我们就可以根据静态资源的特点将其做缓存操作。提高资源响应的速度。</p>
+</blockquote>
+<h1 id="Nginx-的安装"><a href="#Nginx-的安装" class="headerlink" title="Nginx 的安装"></a>Nginx 的安装</h1><h2 id="Windows-下安装"><a href="#Windows-下安装" class="headerlink" title="Windows 下安装"></a>Windows 下安装</h2><ol>
+<li><strong>下载 Nginx</strong></li>
+</ol>
+<p><a target="_blank" rel="noopener" href="http://nginx.org/en/download.html">http://nginx.org/en/download.html</a> 下载稳定版本。</p>
+<p>以 nginx/Windows-1.16.1 为例，直接下载 nginx-1.16.1.zip。下载后解压，解压后如下：</p>
+<p><img src="https://lpxz.oss-cn-zhangjiakou.aliyuncs.com/picgo/20210506100133.png" alt="img"></p>
+<ol start="2">
+<li><strong>启动 Nginx</strong></li>
+</ol>
+<p>有很多种方法启动 Nginx</p>
+<p>(1) 直接双击 Nginx.exe，双击后一个黑色的弹窗一闪而过</p>
+<p>(2) 打开 cmd 命令窗口，切换到 Nginx 解压目录下，输入命令 <code>nginx.exe</code> ，回车即可</p>
+<ol start="3">
+<li><strong>检查 Nginx 是否启动成功</strong></li>
+</ol>
+<p>直接在浏览器地址栏输入网址 <a target="_blank" rel="noopener" href="http://localhost/">http://localhost:80</a> 回车，出现以下页面说明启动成功！</p>
+<p><img src="https://lpxz.oss-cn-zhangjiakou.aliyuncs.com/picgo/20210506100137.png" alt="img"></p>
+<ol start="4">
+<li><strong>配置监听</strong></li>
+</ol>
+<p>Nginx 的配置文件是 conf 目录下的 Nginx.conf，默认配置的 Nginx 监听的端口为 80，如果 80 端口被占用可以修改为未被占用的端口即可。</p>
+<p><img src="https://lpxz.oss-cn-zhangjiakou.aliyuncs.com/picgo/20210506100140.png" alt="img"></p>
+<p>当我们修改了 Nginx 的配置文件 Nginx.conf 时，不需要关闭 Nginx 后重新启动 Nginx，只需要执行命令 <code>nginx -s reload</code> 即可让改动生效</p>
+<ol start="5">
+<li><strong>关闭 Nginx</strong></li>
+</ol>
+<p>如果使用 cmd 命令窗口启动 Nginx， 关闭 cmd 窗口是不能结束 Nginx 进程的，可使用两种方法关闭 Nginx</p>
+<p>(1) 输入 Nginx 命令 <code>nginx -s stop</code> (快速停止 Nginx) 或 <code>nginx -s quit</code> (完整有序的停止 Nginx)</p>
+<p>(2) 使用 taskkill <code>taskkill /f /t /im nginx.exe</code></p>
+<blockquote>
+<p>taskkill 是用来终止进程的，/f 是强制终止 ./t 终止指定的进程和任何由此启动的子进程。/im 表示指定的进程名称 .</p>
+</blockquote>
+<h2 id="Linux-下安装"><a href="#Linux-下安装" class="headerlink" title="Linux 下安装"></a>Linux 下安装</h2><p><strong>1、安装 gcc</strong></p>
+<p>安装 nginx 需要先将官网下载的源码进行编译，编译依赖 gcc 环境，如果没有 gcc 环境，则需要安装：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc-c++</span><br></pre></td></tr></table></figure>
+
+<p><strong>2、PCRE pcre-devel 安装</strong></p>
+<p>PCRE (Perl Compatible Regular Expressions) 是一个 Perl 库，包括 perl 兼容的正则表达式库。nginx 的 http 模块使用 pcre 来解析正则表达式，所以需要在 linux 上安装 pcre 库，pcre-devel 是使用 pcre 开发的一个二次开发库。nginx 也需要此库。命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y pcre pcre-devel</span><br></pre></td></tr></table></figure>
+
+<p><strong>3、zlib 安装</strong></p>
+<p>zlib 库提供了很多种压缩和解压缩的方式， nginx 使用 zlib 对 http 包的内容进行 gzip ，所以需要在 Centos 上安装 zlib 库。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y zlib zlib-devel</span><br></pre></td></tr></table></figure>
+
+<p><strong>4、OpenSSL 安装</strong><br>OpenSSL 是一个强大的安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功能及 SSL 协议，并提供丰富的应用程序供测试或其它目的使用。<br>nginx 不仅支持 http 协议，还支持 https（即在ssl协议上传输http），所以需要在 CentOS 安装 OpenSSL 库。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y openssl openssl-devel</span><br></pre></td></tr></table></figure>
+
+<p><strong>5、下载安装包</strong></p>
+<p>手动下载.tar.gz安装包，地址：<a target="_blank" rel="noopener" href="https://nginx.org/en/download.html">https://nginx.org/en/download.html</a></p>
+<p><img src="https://lpxz.oss-cn-zhangjiakou.aliyuncs.com/picgo/20210506100236.png" alt="img"></p>
+<p>下载完毕上传到服务器上 /root。</p>
+<p><strong>6、解压</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf nginx-1.18.0.tar.gz</span><br><span class="line"><span class="built_in">cd</span> nginx-1.18.0</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://lpxz.oss-cn-zhangjiakou.aliyuncs.com/picgo/20210506100240.png" alt="img"></p>
+<p><strong>7、配置</strong></p>
+<p>使用默认配置，在nginx根目录下执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<p>查找安装路径： <code>whereis nginx</code></p>
+<p><img src="https://lpxz.oss-cn-zhangjiakou.aliyuncs.com/picgo/20210506100244.png" alt="img"></p>
+<h2 id="Nginx-常用命令"><a href="#Nginx-常用命令" class="headerlink" title="Nginx 常用命令"></a>Nginx 常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/nginx/sbin/</span><br><span class="line">./nginx  <span class="comment"># 启动</span></span><br><span class="line">./nginx -c /&#123;特定目录&#125;/nginx.conf  <span class="comment"># 以特定目录下的配置文件启动</span></span><br><span class="line">./nginx -s stop  <span class="comment"># 停止</span></span><br><span class="line">./nginx -s quit  <span class="comment"># 安全退出，nginx 在完成当前工作任务后再停止。</span></span><br><span class="line">./nginx -s reload  <span class="comment"># 重新加载配置文件</span></span><br><span class="line">ps aux|grep nginx  <span class="comment"># 查看 nginx 进程</span></span><br><span class="line">./nginx -t  <span class="comment"># 检查配置文件是否正确</span></span><br><span class="line">./nginx -t -c /&#123;特定目录&#125;/nginx.conf  <span class="comment"># 检查特定目录的配置文件是否正确</span></span><br><span class="line">./nginx -v  <span class="comment"># 查看版本信息</span></span><br></pre></td></tr></table></figure>
+
+<p>启动成功访问 服务器 ip:80</p>
+<p><img src="https://lpxz.oss-cn-zhangjiakou.aliyuncs.com/picgo/20210506100248.png" alt="img"></p>
+<p>注意：如果连接不上，检查阿里云安全组是否开放端口，或者服务器防火墙是否开放端口！</p>
+<p>相关命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开启</span></span><br><span class="line">service firewalld start</span><br><span class="line"><span class="comment"># 重启</span></span><br><span class="line">service firewalld restart</span><br><span class="line"><span class="comment"># 关闭</span></span><br><span class="line">service firewalld stop</span><br><span class="line"><span class="comment"># 查看防火墙规则</span></span><br><span class="line">firewall-cmd --list-all</span><br><span class="line"><span class="comment"># 查询端口是否开放</span></span><br><span class="line">firewall-cmd --query-port=8080/tcp</span><br><span class="line"><span class="comment"># 开放80端口</span></span><br><span class="line">firewall-cmd --permanent --add-port=80/tcp</span><br><span class="line"><span class="comment"># 移除端口</span></span><br><span class="line">firewall-cmd --permanent --remove-port=8080/tcp</span><br><span class="line"><span class="comment"># 重启防火墙 (修改配置后要重启防火墙)</span></span><br><span class="line">firewall-cmd --reload</span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数解释</span></span><br><span class="line"><span class="comment"># 1. firwall-cmd：是 Linux 提供的操作 firewall 的一个工具；</span></span><br><span class="line"><span class="comment"># 2. --permanent：表示设置为持久；</span></span><br><span class="line"><span class="comment"># 3. --add-port：标识添加的端口；</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">main</span></span><br><span class="line">events &#123; ... &#125;</span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">  <span class="section">server</span> &#123;</span><br><span class="line">    <span class="section">location</span>  &#123; ... &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    Nginx 默认的配置文件主要有 <strong>main、events、http、server、location</strong> 五个块组成。其中 http 、server、location 属于嵌套关系。</p>
+<ul>
+<li>main：主要控制Nginx子进程所属的用户和用户组、派生子进程数、错误日志位置与级别、pid位置、子进程优先级、进程对应cpu、进程能够打开的文件描述符数目等。</li>
+<li>events：控制Nginx处理连接的方式。</li>
+<li>http：Nginx处理http请求的主要配置块。</li>
+<li>server：Nginx中主机配置块，可用于配置多个虚拟主机。</li>
+<li>location：server中对应目录级别的控制块，可以有多个。</li>
+</ul>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 运行用户</span></span><br><span class="line"><span class="attribute">user</span> nobody;</span><br><span class="line"><span class="comment"># 工作进程数</span></span><br><span class="line"><span class="attribute">worker_processes</span>  <span class="number">1</span>;</span><br><span class="line"><span class="comment"># 全局错误日志及PID文件</span></span><br><span class="line"><span class="comment"># error_log  logs/error.log;</span></span><br><span class="line"><span class="comment"># error_log  logs/error.log  notice;</span></span><br><span class="line"><span class="comment"># error_log  logs/error.log  info;</span></span><br><span class="line"><span class="comment"># pid        logs/nginx.pid;</span></span><br><span class="line"><span class="comment"># 工作模式及连接数上限</span></span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">  <span class="comment"># epoll是多路复用IO(I/O Multiplexing)中的一种方式,</span></span><br><span class="line">  <span class="comment"># 仅用于linux2.6以上内核,可以大大提高nginx的性能</span></span><br><span class="line">  <span class="attribute">use</span>   <span class="literal">epoll</span>; </span><br><span class="line">  <span class="comment"># 单个后台worker process进程的最大并发链接数    </span></span><br><span class="line">  <span class="attribute">worker_connections</span>  <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">  <span class="comment"># 设定mime类型,类型由mime.type文件定义</span></span><br><span class="line">  <span class="attribute">include</span>    mime.types;</span><br><span class="line">  <span class="attribute">default_type</span>  application/octet-stream;</span><br><span class="line">  <span class="comment"># 设定日志输出模板</span></span><br><span class="line">  <span class="attribute">log_format</span>  main  <span class="string">&#x27;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#x27;</span></span><br><span class="line">    <span class="string">&#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span></span><br><span class="line">    <span class="string">&#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;</span>;</span><br><span class="line">  <span class="attribute">access_log</span>  logs/access.log  main;</span><br><span class="line">  <span class="comment"># sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，</span></span><br><span class="line">  <span class="comment"># 对于普通应用，必须设为 on,</span></span><br><span class="line">  <span class="comment"># 如果用来进行下载等应用磁盘IO重负载应用，可设置为 off，</span></span><br><span class="line">  <span class="comment"># 以平衡磁盘与网络I/O处理速度，降低系统的uptime.</span></span><br><span class="line">  <span class="attribute">sendfile</span>     <span class="literal">on</span>;</span><br><span class="line">  <span class="comment"># tcp_nopush     on;</span></span><br><span class="line">  <span class="comment"># 连接超时时间</span></span><br><span class="line">  <span class="comment"># keepalive_timeout  0;</span></span><br><span class="line">  <span class="attribute">keepalive_timeout</span>  <span class="number">65</span>;</span><br><span class="line">  <span class="attribute">tcp_nodelay</span>     <span class="literal">on</span>;</span><br><span class="line">  <span class="comment"># 开启gzip压缩</span></span><br><span class="line">  <span class="attribute">gzip</span>  <span class="literal">on</span>;</span><br><span class="line">  <span class="attribute">gzip_disable</span> <span class="string">&quot;MSIE [1-6].&quot;</span>;</span><br><span class="line">  <span class="comment"># 设定请求缓冲</span></span><br><span class="line">  <span class="attribute">client_header_buffer_size</span>    <span class="number">128k</span>;</span><br><span class="line">  <span class="attribute">large_client_header_buffers</span>  <span class="number">4</span> <span class="number">128k</span>;</span><br><span class="line">  <span class="comment"># 设定虚拟主机配置</span></span><br><span class="line">  <span class="section">server</span> &#123;</span><br><span class="line">    <span class="comment"># 侦听80端口</span></span><br><span class="line">    <span class="attribute">listen</span>    <span class="number">80</span>;</span><br><span class="line">    <span class="comment"># 定义使用 www.nginx.cn访问</span></span><br><span class="line">    <span class="attribute">server_name</span>  www.nginx.cn;</span><br><span class="line">    <span class="comment"># 定义服务器的默认网站根目录位置</span></span><br><span class="line">    <span class="attribute">root</span> html;</span><br><span class="line">    <span class="comment"># 设定本虚拟主机的访问日志</span></span><br><span class="line">    <span class="attribute">access_log</span>  logs/nginx.access.log  main;</span><br><span class="line">    <span class="comment"># 默认请求</span></span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">      <span class="comment"># 定义首页索引文件的名称</span></span><br><span class="line">      <span class="attribute">index</span> index.php index.html index.htm;   </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"># 定义错误提示页面</span></span><br><span class="line">    <span class="attribute">error_page</span>   <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span> /50x.html;</span><br><span class="line">    <span class="attribute">location</span> = /50x.html &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"># 静态文件，nginx自己处理</span></span><br><span class="line">    <span class="attribute">location</span> <span class="regexp">~ ^/(images|javascript|js|css|flash|media|static)/</span> &#123;</span><br><span class="line">      <span class="comment"># 过期30天，静态文件不怎么更新，过期可以设大一点，</span></span><br><span class="line">      <span class="comment"># 如果频繁更新，则可以设置得小一点。</span></span><br><span class="line">      <span class="attribute">expires</span> <span class="number">30d</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"># PHP 脚本请求全部转发到 FastCGI处理. 使用FastCGI默认配置.</span></span><br><span class="line">    <span class="attribute">location</span> <span class="regexp">~ .php$</span> &#123;</span><br><span class="line">      <span class="attribute">fastcgi_pass</span> <span class="number">127.0.0.1:9000</span>;</span><br><span class="line">      <span class="attribute">fastcgi_index</span> index.php;</span><br><span class="line">      <span class="attribute">fastcgi_param</span>  SCRIPT_FILENAME  $document_root$fastcgi_script_name;</span><br><span class="line">      <span class="attribute">include</span> fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"># 禁止访问 .htxxx 文件</span></span><br><span class="line">    <span class="attribute">location</span> <span class="regexp">~ /.ht</span> &#123;</span><br><span class="line">      <span class="attribute">deny</span> all;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    其中 location 根据不同前缀的使用方式，大致分为普通 location 和正则 location。多个正则 location 之间会按照先后顺序进行匹配，匹配成功后，就不会继续匹配后面定义的 location。多个普通 location 之间遵循“最大匹配原则”，匹配度最高的 location 将会被执行，同时也可以利用 = 精准匹配和 ^~ 非正则匹配可以在正则匹配之前优先匹配，禁止执行原有的正则匹配。</p>
+<p>​    因此 当多种类型的 location 匹配同时出现时，最终执行结果为 = 匹配优先于 ^~ 匹配，^~ 匹配优先于正则匹配，正则匹配优先于普通的最大前缀匹配 只要优先的 location 匹配成功，就不会执行其他的 location。</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Nginx" >
+    <span class="tag-code">Nginx</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2021/06/15/DNS-%E5%8E%9F%E7%90%86%E6%A6%82%E8%BF%B0/">
+        <span class="nav-arrow">← </span>
+        
+          DNS 原理概述
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2021/06/15/CentOS-7-Halo-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
+        
+          CentOS 7 Halo 博客搭建
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo=""
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Nginx%EF%BC%9F"><span class="toc-nav-text">什么是 Nginx？</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Nginx-%E4%BD%9C%E7%94%A8%EF%BC%9F"><span class="toc-nav-text">Nginx 作用？</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Nginx-%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-nav-text">Nginx 的安装</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Windows-%E4%B8%8B%E5%AE%89%E8%A3%85"><span class="toc-nav-text">Windows 下安装</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Linux-%E4%B8%8B%E5%AE%89%E8%A3%85"><span class="toc-nav-text">Linux 下安装</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Nginx-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-nav-text">Nginx 常用命令</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-nav-text">配置文件</span></a>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'https://liupipipi.github.io/2021/06/15/Nginx-学习笔记/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2021 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+  </body>
+</html>
